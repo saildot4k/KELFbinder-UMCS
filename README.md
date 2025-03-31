@@ -48,9 +48,11 @@ If all 3 are not compatible with your modchip, hold start on boot to access wLau
 -. All of these options can be launched and accessed if not deleted - but if you want to save space, it is recommended to delete the unnecessary applications via the PS2 Browser. (Memory Card Screen with Icons and Labels)
 -. If you prefer a loader, regardless of reason, you can adjust the boot order in mc?:/SYS-CONF/PS2BBL.INI
 -. PSXBBL.INI is set to launch wLaunchELF since PSX-DESR does not have an OSDSYS for the other options to apply.
--. OSDMENU.CNF is a backup of unmerged OSDMENU Configurations. Not currently a used file, but perhaps an update will provide this.
+-. OSDMENU.CNF is OSDMENU Configurations. Can be modified with wLaunchELF's text editor.
 
 If you are using a late slim model that is not compatible with System Update Exploits - you can still experience UMCS  by adding or substituting with [FreeMcTuna Installer](https://github.com/NathanNeurotic/FreeMcTuna) to your installation(s).
+---------------------------------------------------------------------
+ORIGINAL README:
 ---------------------------------------------------------------------
 DVDPlayer and System Updates Manager for SCE PlayStation2
 
