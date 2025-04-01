@@ -1,56 +1,66 @@
 # KELFBinder: UMCS Installer
-FORKED FROM KELFBinder by El_isra (https://israpps.github.io/)
-Unified Memory Card System (UMCS) is a structural standard collaborated and envisioned by @TnA-Plastic which unifies exploits and updates into a single correlated setup. [Learn More Here!](https://www.psx-place.com/forums/ps2-application-system.279/)
-@israpps [KELFBINDER](https://github.com/israpps/KELFBinder/releases/tag/latest) modified by @NathanNeurotic
 
-Includes:
+**Forked from KELFBinder by [El_isra](https://israpps.github.io/) and modified by [NathanNeurotic](https://github.com/NathanNeurotic)**
 
-- POWEROFF.ELF - Only needed when not choosing FMCBD 1.966 and/or OSDMENU as main landing.
-- RESTART.ELF - Only needed when not choosing FMCBD 1.966 and/or OSDMENU as main landing.
-- BOOT.ELF ([PS2BBL-MMCE](https://israpps.github.io/PlayStation2-Basic-BootLoader/)) by @israpps
-- OSDMENU.ELF ([PS2BBL-OSDMENU](https://github.com/pcm720/PlayStation2-Basic-BootLoader) to [OSDMENU](https://github.com/pcm720/osdmenu-launcher)) by @pcm720
-- BOOT2.ELF ([wLaunchELF_isr-EXFAT-MMCE](https://israpps.github.io/projects/wlaunchelf-isr)) by @israpps
-- launcher.elf ([OSDMENU](https://github.com/pcm720/osdmenu-launcher) Launcher) by @pcm720
-- patcher.elf ([OSDMENU](https://github.com/pcm720/osdmenu-launcher) Loader) by @pcm720
-- [neutrino](https://github.com/rickgaiser/neutrino) by @rickgaiser
-- [nhddl](https://github.com/pcm720/nhddl/releases/tag/nightly) by @pcm720
-- Icon additions and modifications by @koraxial @NathanNeurotic
-- [POPSTARTER](https://www.psx-place.com/resources/popstarter.683/) exFAT USB Drivers ([BDM Assault](https://github.com/israpps/BDMAssault)) by @israpps
-- [POPSTARTER](https://www.psx-place.com/resources/popstarter.683/) SMB Modules (SMB POPSTARTER) from [POPSTARTER Wiki](https://bitbucket.org/ShaolinAssassin/popstarter-documentation-stuff/wiki/quickstart-smb) by @ShaolinAssassin
-- [DKWDRV](https://github.com/DKWDRV/DKWDRV)
-- [ESR Launcher](https://www.psx-place.com/resources/esr-launcher.1526/) (Manual Launch) by @HowlingWolfHWC
-- [FMCB 1.953 Decrypted](https://israpps.github.io/FreeMcBoot-Installer/)
-- [FMCB 1.966 Decrypted](https://israpps.github.io/FreeMcBoot-Installer/)
-- [FMCB Configurator](https://israpps.github.io/FreeMcBoot-Installer/)
-- [SAS](https://ps2wiki.github.io/sas-apps-archive/) Compliant Installation
-- Icon additions and modifications by @koraxial @NathanNeurotic
+Unified Memory Card System (UMCS) is a structural standard created by [TnA-Plastic](https://github.com/TnA-Plastic), consolidating exploits and updates into a unified setup. [Learn more](https://www.psx-place.com/forums/ps2-application-system.279/).
 
+## Included Applications & Modules:
+- **BOOT.ELF**: [PS2BBL-MMCE](https://israpps.github.io/PlayStation2-Basic-BootLoader/) by [israpps](https://github.com/israpps)
+- **BOOT2.ELF**: [wLaunchELF EXFAT-MMCE](https://israpps.github.io/projects/wlaunchelf-isr) by [israpps](https://github.com/israpps) (Hold `Start` during boot for emergency access)
+- **OSDMENU.ELF**: [PS2BBL-OSDMENU](https://github.com/pcm720/PlayStation2-Basic-BootLoader) linked to [OSDMENU](https://github.com/pcm720/osdmenu-launcher) by [pcm720](https://github.com/pcm720)
+- **launcher.elf & patcher.elf**: [OSDMENU Launcher & Loader](https://github.com/pcm720/osdmenu-launcher) by [pcm720](https://github.com/pcm720)
+- **neutrino**: [Neutrino Loader](https://github.com/rickgaiser/neutrino) by [rickgaiser](https://github.com/rickgaiser)
+- **nhddl**: [Nightly HDD Loader](https://github.com/pcm720/nhddl/releases/tag/nightly) by [pcm720](https://github.com/pcm720)
+- **POPSTARTER exFAT USB Drivers**: [BDM Assault](https://github.com/israpps/BDMAssault) by [israpps](https://github.com/israpps)
+- **POPSTARTER SMB Modules**: [SMB POPSTARTER](https://bitbucket.org/ShaolinAssassin/popstarter-documentation-stuff/wiki/quickstart-smb) by [ShaolinAssassin](https://github.com/ShaolinAssassin)
+- **DKWDRV**: [GitHub Repository](https://github.com/DKWDRV/DKWDRV)
+- **ESR Launcher** (Manual Launch): by [HowlingWolfHWC](https://github.com/HowlingWolfHWC)
+- **FMCB Versions**:
+  - FMCB 1.953 & FMCB 1.966 Decrypted ([FreeMcBoot](https://israpps.github.io/FreeMcBoot-Installer/))
+  - FMCB Configurator ([FreeMcBoot Configurator](https://israpps.github.io/FreeMcBoot-Installer/))
+- **SAS-Compliant Installation** ([PS2Wiki](https://ps2wiki.github.io/sas-apps-archive/))
+- **Custom Icon modifications**: by [koraxial](https://github.com/koraxial), [NathanNeurotic](https://github.com/NathanNeurotic)
 
-Core Critical Folders To Maintain UMCS:
-* BOOT/
-* B?EXEC-SYSTEM/
-* SYS-CONF/
+### Optional ELF Files (Safe to Delete if Unused):
+- **POWEROFF.ELF & RESTART.ELF**: Only necessary if not using FMCB 1.966 or OSDMENU as primary boot.
 
-## PLEASE READ:
-- This installer includes the full spectrum of compatibility options, and they are activated based on what you do or don't delete by default. At the same time, you can edit this order or even change the applications available for launch by modifying mc?:/SYS-CONF/PS2BBL.INI , mc?:/BOOT/CONFIG.INI , mc?:/SYS-CONF/PSXBBL.INI
+## Essential UMCS Folder Structure:
+Maintain these folders to preserve UMCS functionality:
+- `BOOT/`
+- `B?EXEC-SYSTEM/`
+- `SYS-CONF/`
 
-PS2BBL will seek an application to launch on boot in this order:
-1. FMCBD-1.966
-     If you find that 1.966 works, you are safe to delete FMCBD 1.953, FMCBD 1.8C, RESTART, and POWEROFF.
-2. FMCBD-1.953
-     If you find that 1.966 was not compatible with your console due to a modchip or similar, delete it to revert to 1.953 instead.
-3. OSDMENU
-     If you find both conventional FMCBD versions are unsuccessful for your PS2, delete them to automatically switch to OSDMENU.
+## Configuration & Boot Order:
+By default, the boot sequence searches in this order:
 
-If all 3 are not compatible with your modchip, hold start on boot to access wLaunchELF_EXFAT-MMCE (BOOT2.ELF)
-     From here, you can edit this order or even change the applications available for launch by modifying mc?:/SYS-CONF/PS2BBL.INI , mc?:/BOOT/CONFIG.INI , mc?:/SYS-CONF/PSXBBL.INI with wLaunchELF's text editor. An alternative landing could be mc?:/NEUTRINO/nhddl.elf or something of your own personal choice. You still have access to wLaunchELF via Start, so you can add applications of your own choosing.
+1. **FMCB 1.966** *(Recommended for most users)*  
+   - If working, you may safely delete FMCB 1.953, RESTART, and POWEROFF.
 
--. All of these options can be launched and accessed if not deleted - but if you want to save space, it is recommended to delete the unnecessary applications via the PS2 Browser. (Memory Card Screen with Icons and Labels)
--. If you prefer a loader, regardless of reason, you can adjust the boot order in mc?:/SYS-CONF/PS2BBL.INI
--. PSXBBL.INI is set to launch wLaunchELF since PSX-DESR does not have an OSDSYS for the other options to apply.
--. OSDMENU.CNF is OSDMENU Configurations. Can be modified with wLaunchELF's text editor.
+2. **FMCB 1.953** *(Fallback if 1.966 fails due to modchips or hardware incompatibilities)*
+   - If 1.966 fails, delete it to automatically revert to 1.953.
 
-If you are using a late slim model that is not compatible with System Update Exploits - you can still experience UMCS  by adding or substituting with [FreeMcTuna Installer](https://github.com/NathanNeurotic/FreeMcTuna) to your installation(s).
+3. **OSDMENU** *(Alternative launcher if both FMCB versions fail)*
+   - If both FMCB versions are incompatible, delete them to activate OSDMENU automatically.
+
+### Emergency Access:
+If all three primary boot options fail:
+- Hold `Start` during boot to launch **wLaunchELF_EXFAT-MMCE** (BOOT2.ELF).
+- Modify launch order or applications via:
+  - `mc?:/SYS-CONF/PS2BBL.INI`
+  - `mc?:/BOOT/CONFIG.INI`
+  - `mc?:/SYS-CONF/PSXBBL.INI`
+- Alternative launchers (e.g., `mc?:/NEUTRINO/nhddl.elf`) can be configured using wLaunchELF's built-in text editor.
+
+### Additional Notes:
+- Applications are accessible if installed; however, removing unused applications via the PS2 Browser (Memory Card Icon Screen) is recommended to free space.
+- Customize boot preferences by editing `mc?:/SYS-CONF/PS2BBL.INI`.
+- PSX consoles (PSX-DESR) default to launching wLaunchELF (configured via `PSXBBL.INI`).
+- OSDMENU settings (`OSDMENU.CNF`) can be customized via wLaunchELF.
+
+### Compatibility with Late PS2 Slim Models:
+For late-model slim consoles incompatible with standard exploits, incorporate [FreeMcTuna Installer](https://github.com/NathanNeurotic/FreeMcTuna) to utilize UMCS functionality.
+![KELFBinder  _ _KELFBinder_20250331212131](https://github.com/user-attachments/assets/48a1d852-d9d7-4cb4-8ff4-c07d065120e5)
+
 ---------------------------------------------------------------------
 ORIGINAL README:
 ---------------------------------------------------------------------
