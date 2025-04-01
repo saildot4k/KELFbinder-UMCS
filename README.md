@@ -9,8 +9,8 @@ Unified Memory Card System (UMCS) is a structural standard created by [TnA-Plast
 - **BOOT2.ELF**: [wLaunchELF EXFAT-MMCE](https://israpps.github.io/projects/wlaunchelf-isr) by [israpps](https://github.com/israpps) (Hold `Start` during boot for emergency access)
 - **OSDMENU.ELF**: [PS2BBL-OSDMENU](https://github.com/pcm720/PlayStation2-Basic-BootLoader) linked to [OSDMENU](https://github.com/pcm720/osdmenu-launcher) by [pcm720](https://github.com/pcm720)
 - **launcher.elf & patcher.elf**: [OSDMENU Launcher & Loader](https://github.com/pcm720/osdmenu-launcher) by [pcm720](https://github.com/pcm720)
-- **neutrino**: [Neutrino Loader](https://github.com/rickgaiser/neutrino) by [rickgaiser](https://github.com/rickgaiser)
-- **nhddl**: [Nightly HDD Loader](https://github.com/pcm720/nhddl/releases/tag/nightly) by [pcm720](https://github.com/pcm720)
+- **neutrino**: [Neutrino](https://github.com/rickgaiser/neutrino) by [rickgaiser](https://github.com/rickgaiser)
+- **nhddl**: [NHDDL](https://github.com/pcm720/nhddl/releases/tag/nightly) by [pcm720](https://github.com/pcm720)
 - **POPSTARTER exFAT USB Drivers**: [BDM Assault](https://github.com/israpps/BDMAssault) by [israpps](https://github.com/israpps)
 - **POPSTARTER SMB Modules**: [SMB POPSTARTER](https://bitbucket.org/ShaolinAssassin/popstarter-documentation-stuff/wiki/quickstart-smb) by [ShaolinAssassin](https://github.com/ShaolinAssassin)
 - **DKWDRV**: [GitHub Repository](https://github.com/DKWDRV/DKWDRV)
@@ -21,14 +21,11 @@ Unified Memory Card System (UMCS) is a structural standard created by [TnA-Plast
 - **SAS-Compliant Installation** ([PS2Wiki](https://ps2wiki.github.io/sas-apps-archive/))
 - **Custom Icon modifications**: by [koraxial](https://github.com/koraxial), [NathanNeurotic](https://github.com/NathanNeurotic)
 
-### Optional ELF Files (Safe to Delete if Unused):
-- **POWEROFF.ELF & RESTART.ELF**: Only necessary if not using FMCB 1.966 or OSDMENU as primary boot.
-
-## Essential UMCS Folder Structure:
-Maintain these folders to preserve UMCS functionality:
-- `BOOT/`
-- `B?EXEC-SYSTEM/`
-- `SYS-CONF/`
+### UMCS Required Directories:
+- **SYS-CONF**: Contains universal configurations for many applications and exploits.
+- **BOOT**: Contains the heart of UMCS, contains essential ELFs and their local settings.
+- **B?EXEC-SYSTEM**: PS2BBL Exploit relevant to your console(s) region(s).
+- **FMCBD-1.??**, or **OSDMENU**: At least one of the three available boots to land on. Otherwise you will only have the option to hold start to access wLaucnhELF.
 
 ## Configuration & Boot Order:
 By default, the boot sequence searches in this order:
