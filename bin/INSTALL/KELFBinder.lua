@@ -290,6 +290,23 @@ function HDDCalculateRequiredSpace(INSTALL_TABLE, partition)
   return TotalRequiredSpace
 end
 
+function printMultiline(font, x, y, fontsize, width, height, text, color, lineSpacing)
+  if not font then System.log("printMultiline: font is nil") return end
+  if not text or type(text) ~= "string" then System.log("printMultiline: invalid text") return end
+  color = color or Color.new(255, 255, 255, 255)
+  local spacing = lineSpacing or (height + 4)
+  local i = 0
+  for line in string.gmatch(text, "([^\n]+)") do
+    local drawX = math.floor(x)
+    local drawY = math.floor(y + (i * spacing))
+    local fs = math.floor(fontsize)
+    local w = math.floor(width)
+    local h = math.floor(height)
+    Font.ftPrint(font, drawX, drawY, fs, w, h, line, color)
+    i = i + 1
+  end
+end
+
 function Promptkeys(SELECT, ST, CANCEL, CT, REFRESH, RT, ALFA)
   if SELECT == 1 then
     Graphics.drawScaleImage(cross, 80.0, 400.0, 32, 32, Color.new(0x80, 0x80, 0x80, 0x80 - ALFA))
@@ -303,7 +320,34 @@ function Promptkeys(SELECT, ST, CANCEL, CT, REFRESH, RT, ALFA)
     Graphics.drawScaleImage(triangle, 260.0, 400.0, 32, 32, Color.new(0x80, 0x80, 0x80, 0x80 - ALFA))
     Font.ftPrint(LSANS, 290, 407, 0, 400, 16, RT, Color.new(0x80, 0x80, 0x80, 0x80 - ALFA))
   end
+end
 
+function PromptkeysVertical(SELECT, ST, CANCEL, CT, REFRESH, RT, ALFA)
+  local startX = math.floor(SCR_X * 0.48)
+  local startY = math.floor(SCR_Y * 0.35)
+  local spacing = 38
+  local line = 0
+
+  if SELECT == 1 then
+    local y = startY + (spacing * line)
+    Graphics.drawScaleImage(cross, startX, y, 32, 32, Color.new(0x80, 0x80, 0x80, 0x80 - ALFA))
+    printMultiline(LSANS, startX + 40, y + 7, 0, 400, 16, ST, Color.new(0x80, 0x80, 0x80, 0x80 - ALFA))
+    line = line + 1
+  end
+
+  if CANCEL == 1 then
+    local y = startY + (spacing * line)
+    Graphics.drawScaleImage(circle, startX, y, 32, 32, Color.new(0x80, 0x80, 0x80, 0x80 - ALFA))
+    printMultiline(LSANS, startX + 40, y + 7, 0, 400, 16, CT, Color.new(0x80, 0x80, 0x80, 0x80 - ALFA))
+    line = line + 1
+  end
+
+  if REFRESH == 1 then
+    local y = startY + (spacing * line)
+    Graphics.drawScaleImage(triangle, startX, y, 32, 32, Color.new(0x80, 0x80, 0x80, 0x80 - ALFA))
+    printMultiline(LSANS, startX + 40, y + 7, 0, 400, 16, RT, Color.new(0x80, 0x80, 0x80, 0x80 - ALFA))
+    line = line + 1
+  end
 end
 
 function Greeting()
@@ -399,16 +443,13 @@ function MainMenu()
       Font.ftPrint(LSANS, X_MID, 350, 0, 630, 16, LNG_MM5, Color.new(200, 200, 200, 0x80 - A))
     end
     if A > 0 then A = A - 1 end
-    Promptkeys(1, LNG_CT0, 0, 0, 0, 0, A)
+    Promptkeys(1, LNG_CT0, 0, 0, 1, LNG_CT4, A)
+   -- Permanent toggle message on top-right
+	local msg = MUST_INSTALL_EXTRA_FILES and LNG_EXTRA_INSTALL_ENABLE or LNG_EXTRA_INSTALL_DISABLE
 
-    if NA > 0 then
-      if MUST_INSTALL_EXTRA_FILES then
-        Font.ftPrint(LSANS, 40, 40, 0, 630, 16,  LNG_EXTRA_INSTALL_ENABLE, Color.new(0x80, 0x80, 0, NA))
-      else
-        Font.ftPrint(LSANS, 40, 40, 0, 630, 16, LNG_EXTRA_INSTALL_DISABLE, Color.new(0x80, 0x80, 0, NA))
-      end
-      NA = NA-1
-    end
+-- Fallback in case msg is nil
+	if type(msg) ~= "string" then msg = "PS2BBL Exploit Only" end
+	Font.ftPrint(LSANS, SCR_X - 300, 40, 0, 630, 16, msg, Color.new(0x80, 0x80, 0, 0xFF))
 
     Screen.flip()
     local pad = Pads.get()
@@ -416,6 +457,10 @@ function MainMenu()
       D = 1
       Screen.clear()
       break
+    end
+
+    if Pads.check(pad, PAD_TRIANGLE) and D == 0 then
+	KELFBinder.DeinitLOG() System.exitToBrowser()
     end
 
     if Pads.check(pad, PAD_R1) and D == 0 then
@@ -1772,23 +1817,31 @@ function Ask2quit()
     Q = Q + QQ
     Screen.clear()
     Graphics.drawScaleImage(BG, 0.0, 0.0, SCR_X, SCR_Y)
-    Font.ftPrint(LSANS, X_MID, 40, 8, 630, 16, LNG_WANNAQUIT)
-    Promptkeys(1, LNG_YES, 1, LNG_NO, 1, LNG_RWLE, 0)
+    printMultiline(LSANS, X_MID, 40, 8, 630, 16, LNG_WANNAQUIT)
+    PromptkeysVertical(1, LNG_YESALT, 1, LNG_NOALT, 0, 0, 0)
     ORBMAN(0x80 - Q)
+
     local pad = Pads.get()
-    if Pads.check(pad, PAD_CROSS) then KELFBinder.DeinitLOG() System.exitToBrowser() end
-    if Pads.check(pad, PAD_CIRCLE) then break end
-    if Pads.check(pad, PAD_TRIANGLE) then
+
+    -- Cross = Accept / Run ELF
+    if Pads.check(pad, PAD_CROSS) then
       if doesFileExist("INSTALL/CORE/BACKDOOR.ELF") then
         KELFBinder.DeinitLOG()
         System.loadELF(System.getbootpath() .. "INSTALL/CORE/BACKDOOR.ELF")
       else
-        System.log("BACKDOOR ELF NOT ACCESIBLE\n")
+        System.log("BACKDOOR ELF NOT ACCESSIBLE\n")
       end
     end
+
+    -- Circle = Cancel / Exit Ask2quit
+    if Pads.check(pad, PAD_CIRCLE) then
+      break
+    end
+
     Screen.flip()
   end
 end
+
 
 function SystemInfo()
   local D = 15
