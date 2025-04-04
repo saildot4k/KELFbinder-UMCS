@@ -11,13 +11,14 @@ Unified Memory Card System (UMCS) is a structural standard created by [TnA-Plast
 - **OSDMENU.ELF**: [PS2BBL-OSDMENU](https://github.com/pcm720/PlayStation2-Basic-BootLoader) linked to [OSDMENU](https://github.com/pcm720/osdmenu-launcher) by [pcm720](https://github.com/pcm720)
 - **launcher.elf & patcher.elf**: [OSDMENU Launcher & Loader](https://github.com/pcm720/osdmenu-launcher) by [pcm720](https://github.com/pcm720)
 - **neutrino**: [Neutrino](https://github.com/rickgaiser/neutrino) by [rickgaiser](https://github.com/rickgaiser)
-- **nhddl**: [NHDDL](https://github.com/pcm720/nhddl/releases/tag/nightly) by [pcm720](https://github.com/pcm720)
 - **POPSTARTER exFAT USB Drivers**: [BDM Assault](https://github.com/israpps/BDMAssault) by [israpps](https://github.com/israpps)
 - **POPSTARTER SMB Modules**: [SMB POPSTARTER](https://bitbucket.org/ShaolinAssassin/popstarter-documentation-stuff/wiki/quickstart-smb) by [ShaolinAssassin](https://github.com/ShaolinAssassin)
 - **DKWDRV**: [GitHub Repository](https://github.com/DKWDRV/DKWDRV)
 - **ESR Launcher** (Manual Launch): by [HowlingWolfHWC](https://github.com/HowlingWolfHWC)
-- **FMCB Versions**:
-  - FMCB 1.953 & FMCB 1.966 Decrypted ([FreeMcBoot](https://israpps.github.io/FreeMcBoot-Installer/))
+- **FMCB Versions and Umbrella**:
+  - Power Off ELF ([FreeMcBoot](https://israpps.github.io/FreeMcBoot-Installer/))
+  - FMCB 1.953 Decrypted ([FreeMcBoot](https://israpps.github.io/FreeMcBoot-Installer/))
+  - FMCB 1.966 Decrypted ([FreeMcBoot](https://israpps.github.io/FreeMcBoot-Installer/))
   - FMCB Configurator ([FreeMcBoot Configurator](https://israpps.github.io/FreeMcBoot-Installer/))
 - **SAS-Compliant Installation** ([PS2Wiki](https://ps2wiki.github.io/sas-apps-archive/))
 - **Custom Icon modifications**: by [koraxial](https://github.com/koraxial), [NathanNeurotic](https://github.com/NathanNeurotic)
@@ -38,7 +39,7 @@ By default, the boot sequence searches in this order:
    - If 1.966 fails, delete it to automatically revert to 1.953.
 
 3. **OSDMENU** *(Alternative launcher if both FMCB versions fail)*
-   - If both FMCB versions are incompatible, delete them to activate OSDMENU automatically.
+   - If both FMCB versions are incompatible, delete them and FMCB Configurator,  to activate OSDMENU automatically.
 
 ### Emergency Access:
 If all three primary boot options fail:
@@ -47,13 +48,13 @@ If all three primary boot options fail:
   - `mc?:/SYS-CONF/PS2BBL.INI`
   - `mc?:/BOOT/CONFIG.INI`
   - `mc?:/SYS-CONF/PSXBBL.INI`
-- Alternative launchers (e.g., `mc?:/NEUTRINO/nhddl.elf`) can be configured using wLaunchELF's built-in text editor.
+- Alternative launchers (e.g., `mass:/XEB+/XEBPLUS.ELF`) can be configured to launch using wLaunchELF's built-in text editor.
 
 ### Additional Notes:
 - Applications are accessible if installed; however, removing unused applications via the PS2 Browser (Memory Card Icon Screen) is recommended to free space.
 - Customize boot preferences by editing `mc?:/SYS-CONF/PS2BBL.INI`.
 - PSX consoles (PSX-DESR) default to launching wLaunchELF (configured via `PSXBBL.INI`).
-- OSDMENU settings (`OSDMENU.CNF`) can be customized via wLaunchELF.
+- OSDMENU settings (`OSDMENU.CNF`) can be customized via wLaunchELF's text editor.
 
 ### Compatibility with Late PS2 Slim Models:
 For late-model slim consoles incompatible with standard exploits, install any update even though it will say incompatible, and then launch the included OpenTuna Icon Installer to gain access to UMCS via OpenTuna.
@@ -61,7 +62,7 @@ For late-model slim consoles incompatible with standard exploits, install any up
 
 # 📂 HOW TO INSTALL – SIMPLE INSTRUCTIONS (USB ONLY)
 
-Welcome! Follow these steps carefully to install UMCS using a USB drive.  
+Welcome! Follow these steps carefully to install UMCS to your memory card using a USB drive.  
 ---
 
 ## ✅ WHAT YOU'LL NEED:
@@ -95,7 +96,7 @@ Do not rename or move files inside the folder. Do not remove any files or folder
 
 ---
 
-## ✅ Your USB should look like this:
+## ✅ Your USB should look something like this:
 
 ```
 KELFbinder-UMCS/
