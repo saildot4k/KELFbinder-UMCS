@@ -57,7 +57,7 @@ If all three primary boot options fail:
 
 ### Compatibility with Late PS2 Slim Models:
 For late-model slim consoles incompatible with standard exploits, install any update even though it will say incompatible, and then launch the included OpenTuna Icon Installer to gain access to UMCS via OpenTuna.
-![KELFBinder  _ _KELFBinder_20250331212131](https://github.com/user-attachments/assets/48a1d852-d9d7-4cb4-8ff4-c07d065120e5)
+![KELFBinder  _ _KELFBinder_20250404074959](https://github.com/user-attachments/assets/c6e7378a-9913-4e88-993d-da43f68835d4)
 
 # 📂 HOW TO INSTALL – SIMPLE INSTRUCTIONS (USB ONLY)
 
