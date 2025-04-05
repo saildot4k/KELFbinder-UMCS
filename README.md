@@ -1,4 +1,5 @@
 # KELFBinder: UMCS Installer
+![Total Downloads:](https://img.shields.io/github/downloads/NathanNeurotic/KELFbinder-UMCS/total?color=blue&label=Total%20Downloads%3A&style=plastic)
 
 **Forked from KELFBinder by [El_isra](https://israpps.github.io/) and modified by [NathanNeurotic](https://github.com/NathanNeurotic)**
 
