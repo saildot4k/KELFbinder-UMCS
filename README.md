@@ -146,7 +146,7 @@ KELFbinder.elf
 Reread the steps, or ask the community — we’re here to help!
 If KELFBinder is not launching for you, try using a [different version of wLaunchELF](https://israpps.github.io/projects/wlaunchelf-isr).
 If START isn't Booting wLaunchELF, place any program ELF on USB and rename it RESCUE.ELF - this will allow you to launch it when all other options fail by pressing R1 + Start.
-
+If KELFBinder won't load on your console, you can use [Free McBoot Installer: UMCS](https://github.com/NathanNeurotic/FreeMcBoot-Installer-UMCS/releases/tag/latest) for the same installation instead.
 ---------------------------------------------------------------------
 ORIGINAL README:
 ---------------------------------------------------------------------
