@@ -1,9 +1,9 @@
 # KELFBinder: UMCS Installer
-![Total Downloads:](https://img.shields.io/github/downloads/NathanNeurotic/KELFbinder-UMCS/total?color=blue&label=Total%20Downloads%3A&style=plastic)
+![Total Downloads:](https://img.shields.io/github/downloads/saildot4k/KELFbinder-UMCS/total?color=blue&label=Total%20Downloads%3A&style=plastic)
 
 **Forked from KELFBinder by [El_isra](https://israpps.github.io/) and modified by [NathanNeurotic](https://github.com/NathanNeurotic)**
 
-Unified Memory Card System (UMCS) is a structural standard created by [TnA-Plastic](https://github.com/TnA-Plastic), consolidating exploits and updates into a unified setup. [Learn more](https://www.psx-place.com/forums/ps2-application-system.279/).
+Unified Memory Card System (UMCS) is a structural standard created that where `BOOT`, `SYS-CONF` and `APPS` is pre-setup
 
 ## Included Applications & Modules:
 - **OPEN PS2 LOADER - 120 Beta 2241** - https://github.com/ps2-mmce/Open-PS2-Loader/releases
