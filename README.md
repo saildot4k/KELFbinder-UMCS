@@ -17,7 +17,7 @@ Unified Memory Card System (UMCS) is a structural standard created that where `B
 - **DKWDRV**: [GitHub Repository](https://github.com/DKWDRV/DKWDRV)
 - **ESR Launcher** (Manual Launch): by [HowlingWolfHWC](https://github.com/HowlingWolfHWC)
 - **SAS-Compliant Installation** ([PS2 Homebrew Store](https://ps2homebrewstore.com))
-- **Custom Icon modifications**: by [koraxial](https://github.com/koraxial), [NathanNeurotic](https://github.com/NathanNeurotic)
+- **Custom Icon modifications**: by [koraxial](https://github.com/koraxial), [NathanNeurotic](https://github.com/NathanNeurotic), [Yornn](https://github.com/mcoirault/PS2-SAS-icon-guide)
 
 ### UMCS Required Directories:
 - **SYS-CONF**: Contains universal configurations for many applications and exploits.
