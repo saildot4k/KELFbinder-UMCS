@@ -1,7 +1,7 @@
 # KELFBinder: UMCS Installer
 ![Total Downloads:](https://img.shields.io/github/downloads/saildot4k/KELFbinder-UMCS/total?color=blue&label=Total%20Downloads%3A&style=plastic)
 
-**Forked from KELFBinder by [El_isra](https://israpps.github.io/) and modified by [NathanNeurotic](https://github.com/NathanNeurotic)**
+**Forked from KELFBinder by [El_isra](https://israpps.github.io/) and modified by [R3Z3N](https://github.com/saildot4k)**
 
 Unified Memory Card System (UMCS) is a structural standard created that where `BOOT`, `SYS-CONF` and `APPS` is pre-setup
 
