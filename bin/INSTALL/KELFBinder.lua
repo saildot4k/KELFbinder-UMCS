@@ -136,6 +136,7 @@ end
 
 function ORBMANex(IMG, Q, X, Z, POW)
   time = os.clock()*3
+  for l = 1, 7 do
     local angle = time * l * math.pi / 30
     local radius = POW
     local x = radius * math.cos(angle) + 150
@@ -290,23 +291,6 @@ function HDDCalculateRequiredSpace(INSTALL_TABLE, partition)
   return TotalRequiredSpace
 end
 
-function printMultiline(font, x, y, fontsize, width, height, text, color, lineSpacing)
-  if not font then System.log("printMultiline: font is nil") return end
-  if not text or type(text) ~= "string" then System.log("printMultiline: invalid text") return end
-  color = color or Color.new(255, 255, 255, 255)
-  local spacing = lineSpacing or (height + 4)
-  local i = 0
-  for line in string.gmatch(text, "([^\n]+)") do
-    local drawX = math.floor(x)
-    local drawY = math.floor(y + (i * spacing))
-    local fs = math.floor(fontsize)
-    local w = math.floor(width)
-    local h = math.floor(height)
-    Font.ftPrint(font, drawX, drawY, fs, w, h, line, color)
-    i = i + 1
-  end
-end
-
 function Promptkeys(SELECT, ST, CANCEL, CT, REFRESH, RT, ALFA)
   if SELECT == 1 then
     Graphics.drawScaleImage(cross, 80.0, 400.0, 32, 32, Color.new(0x80, 0x80, 0x80, 0x80 - ALFA))
@@ -320,34 +304,7 @@ function Promptkeys(SELECT, ST, CANCEL, CT, REFRESH, RT, ALFA)
     Graphics.drawScaleImage(triangle, 260.0, 400.0, 32, 32, Color.new(0x80, 0x80, 0x80, 0x80 - ALFA))
     Font.ftPrint(LSANS, 290, 407, 0, 400, 16, RT, Color.new(0x80, 0x80, 0x80, 0x80 - ALFA))
   end
-end
 
-function PromptkeysVertical(SELECT, ST, CANCEL, CT, REFRESH, RT, ALFA)
-  local startX = math.floor(SCR_X * 0.48)
-  local startY = math.floor(SCR_Y * 0.35)
-  local spacing = 38
-  local line = 0
-
-  if SELECT == 1 then
-    local y = startY + (spacing * line)
-    Graphics.drawScaleImage(cross, startX, y, 32, 32, Color.new(0x80, 0x80, 0x80, 0x80 - ALFA))
-    printMultiline(LSANS, startX + 40, y + 7, 0, 400, 16, ST, Color.new(0x80, 0x80, 0x80, 0x80 - ALFA))
-    line = line + 1
-  end
-
-  if CANCEL == 1 then
-    local y = startY + (spacing * line)
-    Graphics.drawScaleImage(circle, startX, y, 32, 32, Color.new(0x80, 0x80, 0x80, 0x80 - ALFA))
-    printMultiline(LSANS, startX + 40, y + 7, 0, 400, 16, CT, Color.new(0x80, 0x80, 0x80, 0x80 - ALFA))
-    line = line + 1
-  end
-
-  if REFRESH == 1 then
-    local y = startY + (spacing * line)
-    Graphics.drawScaleImage(triangle, startX, y, 32, 32, Color.new(0x80, 0x80, 0x80, 0x80 - ALFA))
-    printMultiline(LSANS, startX + 40, y + 7, 0, 400, 16, RT, Color.new(0x80, 0x80, 0x80, 0x80 - ALFA))
-    line = line + 1
-  end
 end
 
 function Greeting()
@@ -418,10 +375,10 @@ function MainMenu()
       Font.ftPrint(LSANS, X_MID, 150, 0, 630, 16, LNG_MM2, Color.new(200, 200, 200, 0x80 - A))
     end
     if T == 2 then
-       Font.ftPrint(LSANS, X_MID+1, 190, 0, 630, 16, LNG_MM7, Color.new(0, 0xde, 0xff, 0x90 - A))
-     else
-       Font.ftPrint(LSANS, X_MID, 190, 0, 630, 16, LNG_MM7, Color.new(COL, COL, COL, 0x80 - A))
-     end
+      Font.ftPrint(LSANS, X_MID+1, 190, 0, 630, 16, LNG_MM7, Color.new(0, 0xde, 0xff, 0x90 - A))
+    else
+      Font.ftPrint(LSANS, X_MID, 190, 0, 630, 16, LNG_MM7, Color.new(COL, COL, COL, 0x80 - A))
+    end
     if T == 3 then
       Font.ftPrint(LSANS, X_MID+1, 230, 0, 630, 16, LNG_MM3, Color.new(0, 0xde, 0xff, 0x90 - A))
     else
@@ -443,13 +400,16 @@ function MainMenu()
       Font.ftPrint(LSANS, X_MID, 350, 0, 630, 16, LNG_MM5, Color.new(200, 200, 200, 0x80 - A))
     end
     if A > 0 then A = A - 1 end
-    Promptkeys(1, LNG_CT0, 0, 0, 1, LNG_CT4, A)
-   -- Permanent toggle message on top-right
-	local msg = MUST_INSTALL_EXTRA_FILES and LNG_EXTRA_INSTALL_ENABLE or LNG_EXTRA_INSTALL_DISABLE
+    Promptkeys(1, LNG_CT0, 0, 0, 0, 0, A)
 
--- Fallback in case msg is nil
-	if type(msg) ~= "string" then msg = "PS2BBL Exploit Only" end
-	Font.ftPrint(LSANS, SCR_X - 300, 40, 0, 630, 16, msg, Color.new(0x80, 0x80, 0, 0xFF))
+    if NA > 0 then
+      if MUST_INSTALL_EXTRA_FILES then
+        Font.ftPrint(LSANS, 40, 40, 0, 630, 16,  LNG_EXTRA_INSTALL_ENABLE, Color.new(0x80, 0x80, 0, NA))
+      else
+        Font.ftPrint(LSANS, 40, 40, 0, 630, 16, LNG_EXTRA_INSTALL_DISABLE, Color.new(0x80, 0x80, 0, NA))
+      end
+      NA = NA-1
+    end
 
     Screen.flip()
     local pad = Pads.get()
@@ -457,10 +417,6 @@ function MainMenu()
       D = 1
       Screen.clear()
       break
-    end
-
-    if Pads.check(pad, PAD_TRIANGLE) and D == 0 then
-	KELFBinder.DeinitLOG() System.exitToBrowser()
     end
 
     if Pads.check(pad, PAD_R1) and D == 0 then
@@ -722,15 +678,18 @@ end
 
 function NormalInstall(port, slot)
 
+  if doesFileExist(string.format("mc%d:SYS-CONF/FMCBUINST.dat", port)) or
+      doesFileExist(string.format("mc%u:SYS-CONF/uninstall.dat", port)) then WarnOfShittyFMCBInst() return end
+
   local RET
   local REG = KELFBinder.getsystemregion()
   local TARGET_FOLD
   local FOLDCOUNT = 1 -- the system update folder that we'll be dealing with
-  local FILECOUNT = 4 -- icons + whatever updates you push
+  local FILECOUNT = 2 -- icons + whatever updates you push
   local NEEDED_SPACE = 1024 + 964 -- 1kb + icon.sys size to begin with
   local AvailableSpace = 0
 
-  NEEDED_SPACE = NEEDED_SPACE + GetFileSizeX(SYSUPDATE_ICON_SYS_RES) + GetFileSizeX(SYSUPDATE_DELETE_ICN_RES)
+  NEEDED_SPACE = NEEDED_SPACE + GetFileSizeX(SYSUPDATE_ICON_SYS_RES)
   if doesFileExist(TEST_KELF) then
     RET, _, _, _ = Secrman.Testdownloadfile(port, slot, TEST_KELF)
   else
@@ -747,11 +706,8 @@ function NormalInstall(port, slot)
   end
   FILECOUNT, FOLDCOUNT, NEEDED_SPACE = PreExtraAssetsInstall(FILECOUNT, FOLDCOUNT, NEEDED_SPACE)
   AvailableSpace, NEEDED_SPACE = CalculateRequiredSpace(port, FILECOUNT, FOLDCOUNT, NEEDED_SPACE)
-  if AvailableSpace < NEEDED_SPACE then
-    InsufficientSpace(NEEDED_SPACE, AvailableSpace, LNG_MEMORY_CARD.." "..port, port)
-    return -- ✅ this is critical to stop further code
-  end
-  local tot = FILECOUNT + 4
+  if AvailableSpace < NEEDED_SPACE then InsufficientSpace(NEEDED_SPACE, AvailableSpace, LNG_MEMORY_CARD.." "..port) return end
+  local tot = FILECOUNT + 3
   local cur = 0
   if System.doesDirExist(TARGET_FOLD) then
     Ask2WipeSysUpdateDirs(false, false, false, false, true, port)
@@ -800,7 +756,6 @@ function NormalInstall(port, slot)
     System.copyFile("INSTALL/ASSETS/CHN.sys", string.format("%s/icon.sys", TARGET_FOLD))
   end
   System.copyFile(SYSUPDATE_ICON_SYS_RES, string.format("%s/%s", TARGET_FOLD, SYSUPDATE_ICON_SYS)) --icon is the same for all
-  System.copyFile(SYSUPDATE_DELETE_ICN_RES, string.format("%s/%s", TARGET_FOLD, SYSUPDATE_DELETE_ICN)) --icon is the same for all deletes
 
   ReportProgress(5, tot)
   RET = InstallExtraAssets(port, 5, tot)
@@ -1422,331 +1377,46 @@ function WarnOfShittyFMCBInst()
   OrbIntro(1)
 end
 
--- Recursively deletes files/folders within a directory
-function RecursivelyDeleteDirectory(path)
-  local entries = System.listDirectory(path)
-  if not entries then return end
-
-  for i = 1, #entries do
-    local entry = entries[i]
-
-    if type(entry.name) == "string" and entry.name ~= "" and entry.name ~= "." and entry.name ~= ".." then
-      local fullpath = string.gsub(path .. "/" .. entry.name, "//+", "/")
-
-      -- Visual feedback
-      Screen.clear()
-      Graphics.drawScaleImage(BGERR, 0.0, 0.0, SCR_X, SCR_Y, Color.new(0x20, 0x20, 0x20, 0xC0))
-      Font.ftPrint(LSANS, SCR_X // 2, 60, 8, 630, 32, "Deleting files...", Color.new(0xFF, 0x80, 0x80, 0xFF))
-      Font.ftPrint(LSANS, 50, 120, 0, 630, 24, fullpath, Color.new(0x60, 0xC0, 0xFF, 0xFF))
-      Screen.flip()
-      System.sleep(1)
-
-      if entry.directory then
-        RecursivelyDeleteDirectory(fullpath)
-      else
-        System.removeFile(fullpath)
-      end
-    end
-  end
-
-  System.removeDirectory(path)
-end
-
-function PromptSelectiveFolderCleanup(port, neededSpace)
-  local mcprefix = string.format("mc%d:/", port)
-  local entries = System.listDirectory(mcprefix)
-  if not entries then return false end
-
-  local folders = {}
-  for i = 1, #entries do
-    local entry = entries[i]
-    if entry.directory then
-      table.insert(folders, entry.name)
-    end
-  end
-
-  if #folders == 0 then return false end
-
-  local selected = {}
-  for i = 1, #folders do selected[i] = false end
-
-  local index = 1
-  local maxVisible = 12
-  local scroll = 0
+function InsufficientSpace(NEEDED, AVAILABLE, targetdev)
   local A = 0x80
-  local ready = false
-
-  while true do
-    Screen.clear()
-    Graphics.drawScaleImage(BGERR, 0.0, 0.0, SCR_X, SCR_Y, Color.new(0x30, 0x30, 0x30, 0xFF))
-
-    Font.ftPrint(LSANS, SCR_X // 2, 40, 8, 630, 32, "Free Space Recovery", Color.new(0xC0, 0xC0, 0xC0, 0xFF))
-    Font.ftPrint(LSANS, SCR_X // 2, 80, 8, 630, 24, "Select folders to delete", Color.new(0x90, 0x90, 0x90, 0xFF))
-
-    for i = 1, maxVisible do
-      local j = i + scroll
-      if folders[j] then
-        local marker = selected[j] and "[X]" or "[ ]"
-        local y = 100 + (i * 22)
-        local prefix = (j == index) and "→ " or "   "
-
-        local color = (j == index)
-          and Color.new(0xFF, 0xFF, 0xFF, 0xFF)
-          or Color.new(0xA0, 0xA0, 0xA0, 0xFF)
-
-        Font.ftPrint(LSANS, 80, y, 0, 630, 20, prefix .. marker .. " " .. folders[j], color)
-      end
-    end
-
-    -- ✅ Ensure Promptkeys is always visible
-    Promptkeys(1, "Toggle", 1, "Cancel", 1, "Confirm", 0)
-
-    local pad = Pads.get()
-
-    if ready then
-      if Pads.check(pad, PAD_DOWN) then
-        index = math.min(index + 1, #folders)
-        if index - scroll > maxVisible then scroll = scroll + 1 end
-        ready = false
-      elseif Pads.check(pad, PAD_UP) then
-        index = math.max(index - 1, 1)
-        if index - scroll < 1 then scroll = math.max(scroll - 1, 0) end
-        ready = false
-      elseif Pads.check(pad, PAD_CROSS) then
-        selected[index] = not selected[index]
-        ready = false
-      elseif Pads.check(pad, PAD_TRIANGLE) then
-        local confirmed = ConfirmFolderDeletion(folders, selected)
-        if confirmed then
-          for i = 1, #folders do
-            if selected[i] then
-              local fullpath = mcprefix .. folders[i]
-              RecursivelyDeleteDirectory(fullpath)
-            end
-          end
-          System.sleep(1)
-
-          local updated = System.getMCInfo(port)
-          if updated and updated.freemem >= neededSpace then
-            ShowCleanupSuccess()
-            System.sleep(1)
-
-            -- ✅ Now correctly returns to main menu
-            MainMenu()
-            return true
-          else
-            return false
-          end
-        end
-        break
-      elseif Pads.check(pad, PAD_CIRCLE) then
-        break
-      end
-    elseif not Pads.check(pad, PAD_CROSS)
-        and not Pads.check(pad, PAD_TRIANGLE)
-        and not Pads.check(pad, PAD_UP)
-        and not Pads.check(pad, PAD_DOWN)
-        and not Pads.check(pad, PAD_CIRCLE) then
-      ready = true
-    end
-
-    Screen.flip()
-  end
-
-  return false
-end
-
-function ConfirmFolderDeletion(folders, selected)
-  local Q = 0x7F
-  local QIN = 1
-  local pad = 0
-  local ready = false
-  local confirmed = false
-
-  while true do
-    Screen.clear()
-    Graphics.drawScaleImage(BGERR, 0.0, 0.0, SCR_X, SCR_Y, Color.new(0x20, 0x20, 0x20, 0xFF))
-    Font.ftPrint(LSANS, SCR_X // 2, 60, 8, 630, 32, "Confirm Deletion", Color.new(0xC0, 0xC0, 0xC0, 0xFF))
-    Font.ftPrint(LSANS, SCR_X // 2, 100, 8, 630, 24, "Delete selected folders?", Color.new(0x90, 0x90, 0x90, 0xFF))
-
-    local y = 140
-    for i = 1, #folders do
-      if selected[i] then
-        Font.ftPrint(LSANS, 100, y, 0, 630, 20, "- " .. folders[i], Color.new(0xFF, 0x80, 0x80, 0xFF))
-        y = y + 20
-      end
-    end
-
-    Promptkeys(0, 0, 1, "Cancel", 1, "Confirm", Q)
-
-    pad = Pads.get()
-
-    if ready then
-      if Pads.check(pad, PAD_TRIANGLE) then
-        confirmed = true
-        break
-      elseif Pads.check(pad, PAD_CIRCLE) then
-        break
-      end
-    elseif not Pads.check(pad, PAD_TRIANGLE) and not Pads.check(pad, PAD_CIRCLE) then
-      ready = true
-    end
-
-    if Q > 0 and Q < 0x80 then Q = Q - QIN end
-    Screen.flip()
-  end
-
-  return confirmed
-end
-
--- Deletes all non-"B" folders if space is insufficient
-function WipeNonBDirectoriesIfInsufficientSpace(port, neededSpace)
-  local mcinfo = System.getMCInfo(port)
-  if not mcinfo then return false end
-
-  if mcinfo.freemem >= neededSpace then
-    return true
-  end
-
-  local mcprefix = string.format("mc%d:/", port)
-  local entries = System.listDirectory(mcprefix)
-  local deletedAny = false
-
-  for i = 1, #entries do
-    local entry = entries[i]
-    if entry.directory then
-      local firstChar = string.sub(entry.name, 1, 1)
-      if firstChar ~= "B" then
-        local fullpath = mcprefix .. entry.name
-
-        -- Display what is being deleted
-        Screen.clear()
-        Font.ftPrint(LSANS, 50, 360, 0, 630, 32, "Wiping: " .. entry.name, Color.new(0xFF, 0x40, 0x40, 0xFF))
-        Screen.flip()
-
-        RecursivelyDeleteDirectory(fullpath)
-        deletedAny = true
-      end
-    end
-  end
-
-  System.sleep(1)
-
-  local updated = System.getMCInfo(port)
-  if not updated then return false end
-
-  return deletedAny and updated.freemem >= neededSpace
-end
-
--- Shows a short "Cleanup Complete" message
-function ShowCleanupSuccess()
-  local delay = 120
-  local centerX = SCR_X // 2
-
-  while delay > 0 do
-    Screen.clear()
-    Graphics.drawScaleImage(BG, 0.0, 0.0, SCR_X, SCR_Y, Color.new(0x40, 0x90, 0x40, 0x80))
-    Font.ftPrint(LSANS, centerX, 180, 8, 630, 64, "Cleanup Complete", Color.new(0xC0, 0xFF, 0xC0, 0xFF))
-    Screen.flip()
-    delay = delay - 1
-  end
-end
-
--- Prompt user to confirm deletion of non-system folders
-function ConfirmCleanupDialog(ALFA)
-  local A = 0x80
+  local AIN = -1
   local Q = 0x7f
   local QIN = 1
   local pad = 0
-  local ready = false
-  local CONFIRMED = false
-
+  while A > 0 do
+    Screen.clear()
+    Graphics.drawScaleImage(BG, 0.0, 0.0, SCR_X, SCR_Y, Color.new(0x80, 0x80, 0x80, A))
+    A = A - 1
+    Screen.flip()
+  end
+  A = 0x80
   while true do
     Screen.clear()
-    Graphics.drawScaleImage(BGERR, 0.0, 0.0, SCR_X, SCR_Y, Color.new(0x60, 0x60, 0x60, 0x80 - Q))
+    Graphics.drawScaleImage(BGERR, 0.0, 0.0, SCR_X, SCR_Y, Color.new(0x80, 0x80, 0x80, 0x80 - Q))
+    ORBMANex(REDCURSOR, 0x80 - Q - 1, 180, 180, 80 + Q)
+    Font.ftPrint(LSANS, X_MID, 40, 8, 630, 64, LNG_ERROR, Color.new(0x80, 0x80, 0x80, 0x80 - Q))
+    Font.ftPrint(LSANS, X_MID, 80, 8, 630, 64, string.format(LNG_NOT_ENOUGH_SPACE0, targetdev), Color.new(0x80, 0x80, 0x80, 0x80 - Q))
+    Font.ftPrint(LSANS, X_MID, 120, 8, 630, 64, string.format(LNG_NOT_ENOUGH_SPACE1, NEEDED / 1024, AVAILABLE / 1024),
+      Color.new(0x80, 0x80, 0x80, 0x80 - Q))
 
-    Font.ftPrint(LSANS, SCR_X // 2, 60, 8, 630, 64, "Free Space Recovery", Color.new(0x90, 0x90, 0x90, 0x80 - Q))
-    Font.ftPrint(LSANS, SCR_X // 2, 120, 8, 630, 64, "Delete all non-system folders?", Color.new(0x80, 0x80, 0x80, 0x80 - Q))
-    Font.ftPrint(LSANS, SCR_X // 2, 160, 8, 630, 64, "(Folders not starting with 'B')", Color.new(0x70, 0x70, 0x70, 0x80 - Q))
-
-    Promptkeys(0, 0, 1, "Cancel", 1, "Confirm", Q)
-
-    pad = Pads.get()
-    if ready then
-      if Pads.check(pad, PAD_TRIANGLE) then
-        CONFIRMED = true
-        break
-      end
-      if Pads.check(pad, PAD_CIRCLE) then
-        break
-      end
-    elseif not Pads.check(pad, PAD_TRIANGLE) and not Pads.check(pad, PAD_CIRCLE) then
-      ready = true
+    if Q < 10 then
+      pad = Pads.get()
     end
 
-    if Q > 0 and Q < 0x80 then Q = Q - QIN end
-    Screen.flip()
-  end
-
-  return CONFIRMED
-end
-
--- Error screen with Triangle-based cleanup and retry logic
-function InsufficientSpace(NEEDED, AVAILABLE, targetdev, port)
-  local Q = 0x7f
-  local QIN = 1
-  local pad = 0
-  local ready = false
-  local A = 0x80 -- no animation anymore, just used for background
-
-  -- fallback protections
-  local safe_needed = NEEDED or 0
-  local safe_available = AVAILABLE or (System.getMCInfo and System.getMCInfo(port) or { freemem = 0 }).freemem or 0
-
-  -- Optional: fade-in effect once
-  local FADE = 0x80
-  while FADE > 0 do
-    Screen.clear()
-    Graphics.drawScaleImage(BG, 0.0, 0.0, SCR_X, SCR_Y, Color.new(0x80, 0x80, 0x80, FADE))
-    FADE = FADE - 1
-    Screen.flip()
-  end
-
-  while true do
-    Screen.clear()
-    Graphics.drawScaleImage(BGERR, 0.0, 0.0, SCR_X, SCR_Y, Color.new(0x40, 0x40, 0x40, 0xFF))
-    ORBMANex(REDCURSOR, 0x30, 180, 180, 160)
-
-    Font.ftPrint(LSANS, X_MID, 40, 8, 630, 64, LNG_ERROR, Color.new(0xC0, 0x80, 0x80, 0xFF))
-    Font.ftPrint(LSANS, X_MID, 80, 8, 630, 64,
-      string.format(LNG_NOT_ENOUGH_SPACE0, targetdev), Color.new(0xC0, 0xC0, 0xC0, 0xFF))
-    Font.ftPrint(LSANS, X_MID, 120, 8, 630, 64,
-      string.format(LNG_NOT_ENOUGH_SPACE1, safe_needed / 1024, safe_available / 1024),
-      Color.new(0xA0, 0xA0, 0xA0, 0xFF))
-
-    -- ✅ Fixed: prompt keys now 100% visible
-    Promptkeys(0, 0, 1, "Retry", 1, "Select Folders to Delete from MC", 0)
-
-    pad = Pads.get()
-
-    if ready then
-      if Pads.check(pad, PAD_TRIANGLE) then
-        if port then
-          PromptSelectiveFolderCleanup(port, safe_needed)
-        end
-        MainMenu()
-        return
-      elseif Pads.check(pad, PAD_CIRCLE) then
-        MainMenu()
-        return
-      end
-    elseif not Pads.check(pad, PAD_TRIANGLE) and not Pads.check(pad, PAD_CIRCLE) then
-      ready = true
+    if Pads.check(pad, PAD_CROSS) then
+      QIN = -1
+      Q = 1
     end
 
-    if Q > 0 then Q = Q - QIN end
+    if Q ~= 0 then Q = Q - QIN end
+
+    A = A + AIN
+    if A == 0x40 then AIN = -1 end
+    if A == 0 then AIN = 1 end
+    if Q > 0x7f then break end
     Screen.flip()
   end
+  OrbIntro(1)
 end
 
 function Ask2WipeSysUpdateDirs(NEEDS_JPN, NEEDS_USA, NEEDS_EUR, NEEDS_CHN, NEEDS_CURRENT, port)
@@ -1966,29 +1636,25 @@ function PerformExpertINST(port, slot, UPDT)
     cur = cur+1 ReportProgress(cur, total, SYSUPDATE_ICON_SYS)
     System.copyFile("INSTALL/ASSETS/JPN.sys", string.format("mc%d:/%s/icon.sys", port, "BIEXEC-SYSTEM"))
     System.copyFile(SYSUPDATE_ICON_SYS_RES, string.format("mc%d:/%s/%s", port, "BIEXEC-SYSTEM", SYSUPDATE_ICON_SYS))
-    System.copyFile(SYSUPDATE_DELETE_ICN_RES, string.format("mc%d:/%s/%s", port, "BIEXEC-SYSTEM", SYSUPDATE_DELETE_ICN))
   end
   if NEEDS_USA then
     KELFBinder.setSysUpdateFoldProps(port, slot, "BAEXEC-SYSTEM")
     cur = cur+1 ReportProgress(cur, total, SYSUPDATE_ICON_SYS)
     System.copyFile("INSTALL/ASSETS/USA.sys", string.format("mc%d:/%s/icon.sys", port, "BAEXEC-SYSTEM"))
     System.copyFile(SYSUPDATE_ICON_SYS_RES, string.format("mc%d:/%s/%s", port, "BAEXEC-SYSTEM", SYSUPDATE_ICON_SYS))
-    System.copyFile(SYSUPDATE_DELETE_ICN_RES, string.format("mc%d:/%s/%s", port, "BAEXEC-SYSTEM", SYSUPDATE_DELETE_ICN))
   end
   if NEEDS_EUR then
     KELFBinder.setSysUpdateFoldProps(port, slot, "BEEXEC-SYSTEM")
     cur = cur+1 ReportProgress(cur, total, SYSUPDATE_ICON_SYS)
     System.copyFile("INSTALL/ASSETS/EUR.sys", string.format("mc%d:/%s/icon.sys", port, "BEEXEC-SYSTEM"))
     System.copyFile(SYSUPDATE_ICON_SYS_RES, string.format("mc%d:/%s/%s", port, "BEEXEC-SYSTEM", SYSUPDATE_ICON_SYS))
-    System.copyFile(SYSUPDATE_DELETE_ICN_RES, string.format("mc%d:/%s/%s", port, "BEEXEC-SYSTEM", SYSUPDATE_DELETE_ICN))
   end
   if NEEDS_CHN then
     KELFBinder.setSysUpdateFoldProps(port, slot, "BCEXEC-SYSTEM")
     cur = cur+1 ReportProgress(cur, total, SYSUPDATE_ICON_SYS)
     System.copyFile("INSTALL/ASSETS/CHN.sys", string.format("mc%d:/%s/icon.sys", port, "BCEXEC-SYSTEM"))
     System.copyFile(SYSUPDATE_ICON_SYS_RES, string.format("mc%d:/%s/%s", port, "BCEXEC-SYSTEM", SYSUPDATE_ICON_SYS))
-    System.copyFile(SYSUPDATE_DELETE_ICN_RES, string.format("mc%d:/%s/%s", port, "BCEXEC-SYSTEM", SYSUPDATE_DELETE_ICN))
-   end
+  end
 
   RET = InstallExtraAssets(port, cur, total)
   System.AllowPowerOffButton(1)
@@ -2105,31 +1771,23 @@ function Ask2quit()
     Q = Q + QQ
     Screen.clear()
     Graphics.drawScaleImage(BG, 0.0, 0.0, SCR_X, SCR_Y)
-    printMultiline(LSANS, X_MID, 40, 8, 630, 16, LNG_WANNAQUIT)
-    PromptkeysVertical(1, LNG_YESALT, 1, LNG_NOALT, 0, 0, 0)
+    Font.ftPrint(LSANS, X_MID, 40, 8, 630, 16, LNG_WANNAQUIT)
+    Promptkeys(1, LNG_YES, 1, LNG_NO, 1, LNG_RWLE, 0)
     ORBMAN(0x80 - Q)
-
     local pad = Pads.get()
-
-    -- Cross = Accept / Run ELF
-    if Pads.check(pad, PAD_CROSS) then
+    if Pads.check(pad, PAD_CROSS) then KELFBinder.DeinitLOG() System.exitToBrowser() end
+    if Pads.check(pad, PAD_CIRCLE) then break end
+    if Pads.check(pad, PAD_TRIANGLE) then
       if doesFileExist("INSTALL/CORE/BACKDOOR.ELF") then
         KELFBinder.DeinitLOG()
         System.loadELF(System.getbootpath() .. "INSTALL/CORE/BACKDOOR.ELF")
       else
-        System.log("BACKDOOR ELF NOT ACCESSIBLE\n")
+        System.log("BACKDOOR ELF NOT ACCESIBLE\n")
       end
     end
-
-    -- Circle = Cancel / Exit Ask2quit
-    if Pads.check(pad, PAD_CIRCLE) then
-      break
-    end
-
     Screen.flip()
   end
 end
-
 
 function SystemInfo()
   local D = 15
