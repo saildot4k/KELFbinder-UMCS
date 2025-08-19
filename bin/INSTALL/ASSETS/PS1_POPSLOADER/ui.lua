@@ -10,7 +10,7 @@ LOG("Registering POPSLoader UI")
 UI = {
     LASTSCENE = 4;
     CURSCENE = 4;
-    SCENES = {GUSB=1, GSMB=2, GHDD=3, MMAIN=4, MPROFILE=5, CREDITS=6};
+    SCENES = {GUSB=1, GHDD=2, MMAIN=3, MPROFILE=4, CREDITS=5};
     SceneChange = function (SCENE)
       UI.LASTSCENE = UI.CURSCENE
       UI.CURSCENE = SCENE
@@ -158,17 +158,18 @@ UI = {
     };
     MainMenu = {
       OPT = 1;
-      opts = {"USB", "SMB", "HDD"};
+      opts = {"USB", "HDD"};
       Play = function ()
-        local profcnt = 3
+        local profcnt = 2
         Font.ftPrint(LFONT, UI.SCR.X_MID, 30, 8, UI.SCR.X, 16, "Welcome to POPStarter Loader", UI.CCOL.GREY)
         for x = 1, #UI.MainMenu.opts do
-          Graphics.drawImage(IMG[UI.MainMenu.opts[x]], 256+(110*(x-1))-64, x == UI.MainMenu.OPT and (UI.SCR.Y_MID-65) or (UI.SCR.Y_MID-64),
+          -- Graphics.drawImage(IMG[UI.MainMenu.opts[x]], 256+(110*(x-1))-64, x == UI.MainMenu.OPT and (UI.SCR.Y_MID-65) or (UI.SCR.Y_MID-64), (BACKUP for 3 icons)
+          Graphics.drawImage(IMG[UI.MainMenu.opts[x]], 256+(225*(x-1))-64, x == UI.MainMenu.OPT and (UI.SCR.Y_MID-65) or (UI.SCR.Y_MID-64),
             x == UI.MainMenu.OPT and UI.CCOL.YELLOW or UI.CCOL.GREY)
         end
         Graphics.drawImage(IMG["start"], 20, UI.SCR.Y-65) Font.ftPrint(SFONT, 55, UI.SCR.Y-60, 0, UI.SCR.X, 16, "POPStarter profiles")
         Graphics.drawImage(IMG["select"], 20, UI.SCR.Y-85) Font.ftPrint(SFONT, 55, UI.SCR.Y-80, 0, UI.SCR.X, 16, "About")
-        if UI.MainMenu.OPT == 2 then Font.ftPrint(BFONT, UI.SCR.X_MID, UI.SCR.Y_MID+UI.SCR.Y_MID/2, 8, UI.SCR.X, 16, "COMMING SOON", UI.CCOL.RED) end
+        -- if UI.MainMenu.OPT == 2 then Font.ftPrint(BFONT, UI.SCR.X_MID, UI.SCR.Y_MID+UI.SCR.Y_MID/2, 8, UI.SCR.X, 16, "COMING SOON", UI.CCOL.RED) end -- Hidden SMB text which was OPT 2...
         UI.Pad.Listen()
         if Pads.check(GPAD, PAD_RIGHT) then UI.MainMenu.OPT = CLAMP(UI.MainMenu.OPT+1, 1, profcnt) GPAD = 0 end
         if Pads.check(GPAD, PAD_LEFT)  then UI.MainMenu.OPT = CLAMP(UI.MainMenu.OPT-1, 1, profcnt) GPAD = 0 end
@@ -178,7 +179,7 @@ UI = {
           if UI.MainMenu.OPT == 1 then
             PLDR.CleanupGameList()
             PLDR.GetPS1GameLists("mass"..PLDR.USB.MASSINDX..":/POPS/", true)
-          elseif UI.MainMenu.OPT == 3 then
+          elseif UI.MainMenu.OPT == 2 then
             PLDR.LoadHDDModules()
             if UI.LASTSCENE == UI.SCENES.GHDD then
               LOG("skipping cache cleanup")
