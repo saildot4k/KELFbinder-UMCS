@@ -689,7 +689,7 @@ function NormalInstall(port, slot)
   local NEEDED_SPACE = 1024 + 964 -- 1kb + icon.sys size to begin with
   local AvailableSpace = 0
 
-  NEEDED_SPACE = NEEDED_SPACE + GetFileSizeX(SYSUPDATE_ICON_SYS_RES)
+  NEEDED_SPACE = NEEDED_SPACE + GetFileSizeX(SYSUPDATE_ICON_SYS_RES) + GetFileSizeX(SYSUPDATE_COPY_ICN_RES) + GetFileSizeX(SYSUPDATE_COPY_ICN_RES)
   if doesFileExist(TEST_KELF) then
     RET, _, _, _ = Secrman.Testdownloadfile(port, slot, TEST_KELF)
   else
@@ -756,6 +756,8 @@ function NormalInstall(port, slot)
     System.copyFile("INSTALL/ASSETS/CHN.sys", string.format("%s/icon.sys", TARGET_FOLD))
   end
   System.copyFile(SYSUPDATE_ICON_SYS_RES, string.format("%s/%s", TARGET_FOLD, SYSUPDATE_ICON_SYS)) --icon is the same for all
+  System.copyFile(SYSUPDATE_COPY_ICN_RES, string.format("%s/%s", TARGET_FOLD, SYSUPDATE_COPY_ICN)) --icon is the same for all
+  System.copyFile(SYSUPDATE_DELETE_ICN_RES, string.format("%s/%s", TARGET_FOLD, SYSUPDATE_DELETE_ICN)) --icon is the same for all
 
   ReportProgress(5, tot)
   RET = InstallExtraAssets(port, 5, tot)
@@ -1542,6 +1544,8 @@ function PerformExpertINST(port, slot, UPDT)
   local SIZE_NEED2 = 0
   local SYSUPDATE_MAIN_SIZE = GetFileSizeX(SYSUPDATE_MAIN)
   local ICONSIZE = GetFileSizeX(SYSUPDATE_ICON_SYS_RES)
+  local ICONSIZE = GetFileSizeX(SYSUPDATE_COPY_ICN_RES)
+  local ICONSIZE = GetFileSizeX(SYSUPDATE_DELETE_ICN_RES)
   local NEEDS_JPN = false
   local NEEDS_USA = false
   local NEEDS_EUR = false
@@ -1636,24 +1640,32 @@ function PerformExpertINST(port, slot, UPDT)
     cur = cur+1 ReportProgress(cur, total, SYSUPDATE_ICON_SYS)
     System.copyFile("INSTALL/ASSETS/JPN.sys", string.format("mc%d:/%s/icon.sys", port, "BIEXEC-SYSTEM"))
     System.copyFile(SYSUPDATE_ICON_SYS_RES, string.format("mc%d:/%s/%s", port, "BIEXEC-SYSTEM", SYSUPDATE_ICON_SYS))
+    System.copyFile(SYSUPDATE_COPY_ICN_RES, string.format("mc%d:/%s/%s", port, "BIEXEC-SYSTEM", SYSUPDATE_COPY_ICN))
+    System.copyFile(SYSUPDATE_DELETE_ICN_RES, string.format("mc%d:/%s/%s", port, "BIEXEC-SYSTEM", SYSUPDATE_DELETE_ICN))
   end
   if NEEDS_USA then
     KELFBinder.setSysUpdateFoldProps(port, slot, "BAEXEC-SYSTEM")
     cur = cur+1 ReportProgress(cur, total, SYSUPDATE_ICON_SYS)
     System.copyFile("INSTALL/ASSETS/USA.sys", string.format("mc%d:/%s/icon.sys", port, "BAEXEC-SYSTEM"))
     System.copyFile(SYSUPDATE_ICON_SYS_RES, string.format("mc%d:/%s/%s", port, "BAEXEC-SYSTEM", SYSUPDATE_ICON_SYS))
+    System.copyFile(SYSUPDATE_COPY_ICN_RES, string.format("mc%d:/%s/%s", port, "BAEXEC-SYSTEM", SYSUPDATE_COPY_ICN))
+    System.copyFile(SYSUPDATE_DELETE_ICN_RES, string.format("mc%d:/%s/%s", port, "BAEXEC-SYSTEM", SYSUPDATE_DELETE_ICN))
   end
   if NEEDS_EUR then
     KELFBinder.setSysUpdateFoldProps(port, slot, "BEEXEC-SYSTEM")
     cur = cur+1 ReportProgress(cur, total, SYSUPDATE_ICON_SYS)
     System.copyFile("INSTALL/ASSETS/EUR.sys", string.format("mc%d:/%s/icon.sys", port, "BEEXEC-SYSTEM"))
     System.copyFile(SYSUPDATE_ICON_SYS_RES, string.format("mc%d:/%s/%s", port, "BEEXEC-SYSTEM", SYSUPDATE_ICON_SYS))
+    System.copyFile(SYSUPDATE_COPY_ICN_RES, string.format("mc%d:/%s/%s", port, "BEEXEC-SYSTEM", SYSUPDATE_COPY_ICN))
+    System.copyFile(SYSUPDATE_DELETE_ICN_RES, string.format("mc%d:/%s/%s", port, "BEEXEC-SYSTEM", SYSUPDATE_DELETE_ICN))
   end
   if NEEDS_CHN then
     KELFBinder.setSysUpdateFoldProps(port, slot, "BCEXEC-SYSTEM")
     cur = cur+1 ReportProgress(cur, total, SYSUPDATE_ICON_SYS)
     System.copyFile("INSTALL/ASSETS/CHN.sys", string.format("mc%d:/%s/icon.sys", port, "BCEXEC-SYSTEM"))
     System.copyFile(SYSUPDATE_ICON_SYS_RES, string.format("mc%d:/%s/%s", port, "BCEXEC-SYSTEM", SYSUPDATE_ICON_SYS))
+    System.copyFile(SYSUPDATE_COPY_ICN_RES, string.format("mc%d:/%s/%s", port, "BCEXEC-SYSTEM", SYSUPDATE_COPY_ICN))
+    System.copyFile(SYSUPDATE_DELETE_ICN_RES, string.format("mc%d:/%s/%s", port, "BCEXEC-SYSTEM", SYSUPDATE_DELETE_ICN))
   end
 
   RET = InstallExtraAssets(port, cur, total)
