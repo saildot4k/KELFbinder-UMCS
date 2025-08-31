@@ -5,7 +5,7 @@
   LNG_CRDTS4 = "Get me free at https://github.com/israpps/KELFBinder"
   LNG_DOCSLINK = "Documentation available at https://israpps.github.io/KELFBinder/"
   LNG_CRDTS5 = "Thanks to:"
-  LNG_MM1 = "UMCS Installer\nKELFBinder MOD by NathanNeurotic (Ripto)"
+  LNG_MM1 = "UMCS Installer\nKELFBinder MOD by NathanNeurotic (Ripto) & R3Z3N"
   LNG_MM2 = "Create UMCS Exploit Card (PS2BBL)"
   LNG_MM3 = "Install DVDPlayer Updates (Not Included)"
   LNG_MM4 = "System Information"
