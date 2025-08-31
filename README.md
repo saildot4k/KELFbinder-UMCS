@@ -7,7 +7,7 @@ Unified Memory Card System (UMCS) is a structural standard created that where `B
 
 ## Included Applications & Modules:
 - **OPEN PS2 LOADER - 120 Beta 2241** - https://github.com/ps2-mmce/Open-PS2-Loader/releases
-- **BOOT.ELF**: [PS2BBL-MMCE](https://israpps.github.io/PlayStation2-Basic-BootLoader/) by [israpps](https://github.com/israpps)
+- **BOOT.ELF**: [PS2BBL-MMCE](https://israpps.github.io/PlayStation2-Basic-BootLoader/) by [israpps](https://github.com/israpps) (9 path version)
 - **BOOT2.ELF**: [wLaunchELF EXFAT](https://israpps.github.io/projects/wlaunchelf-isr) by [israpps](https://github.com/israpps) (Hold `START + R1` during boot for emergency access from mass:/RESCUE.ELF)
 - **OSDMENU.ELF**: [PS2BBL-OSDMENU](https://github.com/pcm720/PlayStation2-Basic-BootLoader) linked to [OSDMENU](https://github.com/pcm720/osdmenu-launcher) by [pcm720](https://github.com/pcm720)
 - **Neutrino**: [Neutrino](https://github.com/rickgaiser/neutrino) by [rickgaiser](https://github.com/rickgaiser) (you must place this on your USB root or MMCE root)
