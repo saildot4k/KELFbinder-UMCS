@@ -9,7 +9,7 @@
 #
 # Source: github.com/pcm720/nhddl
 SET "TITLE" "[APP] NHDDL"
-SET "VERSION" "nightly gfeeb78a"
+SET "VERSION" "nightly 5ef3c3f"
 SET "AUTHOR" "pcm720"
 SET "DESC" "A Neutrino launcher"
 SET "ELF" "nhddl.elf"
