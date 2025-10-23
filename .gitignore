@@ -46,3 +46,5 @@ PARTIAL_CHANGELOG.TXT
 *.opt
 bin/KELFBinder_log.txt
 bin/INSTALL/KELF/DVDPLAYER.XLF
+
+psu.toml

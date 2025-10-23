@@ -9,7 +9,7 @@
 #
 # Source: 
 SET "TITLE" "[PS1] DKWDRV"
-SET "VERSION" "1.7.6e-6d98630"
+SET "VERSION" "1.7.6f"
 SET "AUTHOR" "github.com/DKWDRV"
 SET "DESC" "DKWDRV is a replacement for the original PS1DRV of Playstation 2 consoles, enabling the ability to read disc backups as well as cue/bin backups via USB. (USB loading for DECKARD consoles only!)"
 SET "ELF" "DKWDRV.ELF"
