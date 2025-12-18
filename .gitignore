@@ -48,3 +48,5 @@ bin/KELFBinder_log.txt
 bin/INSTALL/KELF/DVDPLAYER.XLF
 
 psu.toml
+
+!bin/INSTALL//ASSETS/*
