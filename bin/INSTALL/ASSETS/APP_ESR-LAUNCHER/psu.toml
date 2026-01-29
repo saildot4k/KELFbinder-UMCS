@@ -1,4 +1,0 @@
-[config]
-name = "APP_ESR-LAUNCHER"
-exclude = [ "psu.toml" ]
-timestamp = "2098-12-31 21:56:20"
