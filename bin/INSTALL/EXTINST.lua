@@ -74,23 +74,23 @@ function Update_InstTable(SOURCEDIR, DESTNTDIR, SOURCE_TABLE, DEST_TABLE, MKDIR_
   return COUNT
 end
 
-Update_InstTable("INSTALL/ASSETS/SYS-CONF", "SYS-CONF", MC_INST_TABLE.source, MC_INST_TABLE.target, MC_INST_TABLE.dirs)
-Update_InstTable("INSTALL/ASSETS/SYS_OSDMENU", "SYS_OSDMENU", MC_INST_TABLE.source, MC_INST_TABLE.target, MC_INST_TABLE.dirs)
-Update_InstTable("INSTALL/ASSETS/BOOT"  , "BOOT"  , MC_INST_TABLE.source, MC_INST_TABLE.target, MC_INST_TABLE.dirs)
-Update_InstTable("INSTALL/ASSETS/APPS"  , "APPS"  , MC_INST_TABLE.source, MC_INST_TABLE.target, MC_INST_TABLE.dirs)
-Update_InstTable("INSTALL/ASSETS/APP_NHDDL"  , "APP_NHDDL"  , MC_INST_TABLE.source, MC_INST_TABLE.target, MC_INST_TABLE.dirs)
-Update_InstTable("INSTALL/ASSETS/APP_OPL"  , "APP_OPL"  , MC_INST_TABLE.source, MC_INST_TABLE.target, MC_INST_TABLE.dirs)
-Update_InstTable("INSTALL/ASSETS/PS1_DKWDRV"  , "PS1_DKWDRV"  , MC_INST_TABLE.source, MC_INST_TABLE.target, MC_INST_TABLE.dirs)
-Update_InstTable("INSTALL/ASSETS/NEUTRINO"  , "NEUTRINO"  , MC_INST_TABLE.source, MC_INST_TABLE.target, MC_INST_TABLE.dirs)
-Update_InstTable("INSTALL/ASSETS/NEUTRINO/config"  , "NEUTRINO/config"  , MC_INST_TABLE.source, MC_INST_TABLE.target, MC_INST_TABLE.dirs)
-Update_InstTable("INSTALL/ASSETS/NEUTRINO/modules"  , "NEUTRINO/modules"  , MC_INST_TABLE.source, MC_INST_TABLE.target, MC_INST_TABLE.dirs)
-Update_InstTable("INSTALL/ASSETS/POWEROFF"  , "POWEROFF"  , MC_INST_TABLE.source, MC_INST_TABLE.target, MC_INST_TABLE.dirs)
-Update_InstTable("INSTALL/ASSETS/RESTART"  , "RESTART"  , MC_INST_TABLE.source, MC_INST_TABLE.target, MC_INST_TABLE.dirs)
+Update_InstTable("INSTALL/ASSETS/SYS-CONF"        , "SYS-CONF"        , MC_INST_TABLE.source, MC_INST_TABLE.target, MC_INST_TABLE.dirs)
+Update_InstTable("INSTALL/ASSETS/SYS_OSDMENU"     , "SYS_OSDMENU"     , MC_INST_TABLE.source, MC_INST_TABLE.target, MC_INST_TABLE.dirs)
+Update_InstTable("INSTALL/ASSETS/BOOT"            , "BOOT"            , MC_INST_TABLE.source, MC_INST_TABLE.target, MC_INST_TABLE.dirs)
+Update_InstTable("INSTALL/ASSETS/APPS"            , "APPS"            , MC_INST_TABLE.source, MC_INST_TABLE.target, MC_INST_TABLE.dirs)
+Update_InstTable("INSTALL/ASSETS/APP_NHDDL"       , "APP_NHDDL"       , MC_INST_TABLE.source, MC_INST_TABLE.target, MC_INST_TABLE.dirs)
+Update_InstTable("INSTALL/ASSETS/APP_OPL"         , "APP_OPL"         , MC_INST_TABLE.source, MC_INST_TABLE.target, MC_INST_TABLE.dirs)
+Update_InstTable("INSTALL/ASSETS/PS1_DKWDRV"      , "PS1_DKWDRV"      , MC_INST_TABLE.source, MC_INST_TABLE.target, MC_INST_TABLE.dirs)
+Update_InstTable("INSTALL/ASSETS/NEUTRINO"        , "NEUTRINO"        , MC_INST_TABLE.source, MC_INST_TABLE.target, MC_INST_TABLE.dirs)
+Update_InstTable("INSTALL/ASSETS/NEUTRINO/config" , "NEUTRINO/config" , MC_INST_TABLE.source, MC_INST_TABLE.target, MC_INST_TABLE.dirs)
+Update_InstTable("INSTALL/ASSETS/NEUTRINO/modules", "NEUTRINO/modules", MC_INST_TABLE.source, MC_INST_TABLE.target, MC_INST_TABLE.dirs)
+Update_InstTable("INSTALL/ASSETS/POWEROFF"        , "POWEROFF"        , MC_INST_TABLE.source, MC_INST_TABLE.target, MC_INST_TABLE.dirs)
+Update_InstTable("INSTALL/ASSETS/RESTART"         , "RESTART"         , MC_INST_TABLE.source, MC_INST_TABLE.target, MC_INST_TABLE.dirs)
 
 
-Update_InstTable("INSTALL/ASSETS/PS2BBL-HDD", "hdd0:__sysconf:pfs:/PS2BBL", HDD_INST_TABLE.source, HDD_INST_TABLE.target, HDD_INST_TABLE.dirs)
-Update_InstTable("INSTALL/ASSETS/APPS-HDD"  , "hdd0:__common:pfs:/APPS"   , HDD_INST_TABLE.source, HDD_INST_TABLE.target, HDD_INST_TABLE.dirs)
-Update_InstTable("INSTALL/ASSETS/BOOT-HDD"  , "hdd0:__sysconf:pfs:/BOOT"  , HDD_INST_TABLE.source, HDD_INST_TABLE.target, HDD_INST_TABLE.dirs)
+Update_InstTable("INSTALL/ASSETS/PS2BBL-HDD"      , "hdd0:__sysconf:pfs:/PS2BBL", HDD_INST_TABLE.source, HDD_INST_TABLE.target, HDD_INST_TABLE.dirs)
+Update_InstTable("INSTALL/ASSETS/APPS-HDD"        , "hdd0:__common:pfs:/APPS"   , HDD_INST_TABLE.source, HDD_INST_TABLE.target, HDD_INST_TABLE.dirs)
+Update_InstTable("INSTALL/ASSETS/BOOT-HDD"        , "hdd0:__sysconf:pfs:/BOOT"  , HDD_INST_TABLE.source, HDD_INST_TABLE.target, HDD_INST_TABLE.dirs)
 
 Update_InstTable("INSTALL/ASSETS/FSCK", "hdd0:__system:pfs:/fsck/lang", HDD_INST_TABLE.source, HDD_INST_TABLE.target, HDD_INST_TABLE.dirs)
 
