@@ -6,11 +6,11 @@ Drawbar(X_MID, Y_MID, 60, Color.new(0, 255, 0)) -- THIS MUST ALWAYS BE THE FIRST
 System.log("declaring installation tables for PS2BBL\n")
 
 SYSUPDATE_ICON_SYS = "list.icn" -- icon files for memory card update
-SYSUPDATE_ICON_SYS_RES = "INSTALL/ASSETS/"..SYSUPDATE_ICON_SYS
---- SYSUPDATE_COPY_ICN = "copy.icn" -- icon files for memory card update  --- Not used for LoadBOOTer
---- SYSUPDATE_COPY_ICN_RES = "INSTALL/ASSETS/"..SYSUPDATE_COPY_ICN        --- Not used for LoadBOOTer
---- SYSUPDATE_DELETE_ICN = "del.icn" -- icon files for memory card update --- Not used for LoadBOOTer
---- SYSUPDATE_DELETE_ICN_RES = "INSTALL/ASSETS/"..SYSUPDATE_DELETE_ICN    --- Not used for LoadBOOTer
+-- SYSUPDATE_ICON_SYS_RES = "INSTALL/ASSETS/"..SYSUPDATE_ICON_SYS
+-- SYSUPDATE_COPY_ICN = "copy.icn" -- icon files for memory card update  --- Not used for LoadBOOTer
+-- SYSUPDATE_COPY_ICN_RES = "INSTALL/ASSETS/"..SYSUPDATE_COPY_ICN        --- Not used for LoadBOOTer
+-- SYSUPDATE_DELETE_ICN = "del.icn" -- icon files for memory card update --- Not used for LoadBOOTer
+-- SYSUPDATE_DELETE_ICN_RES = "INSTALL/ASSETS/"..SYSUPDATE_DELETE_ICN    --- Not used for LoadBOOTer
 
 --- installation table for memory card.
 MC_INST_TABLE = {
